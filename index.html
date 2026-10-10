@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsunami Ready India</title>
+<style>
+  /* ===== COLOURS (change them here) ===== */
+  :root {
+    --navy: #0b2a43;
+    --sea: #1c6e8c;
+    --foam: #eaf4f7;
+    --sand: #f6efe0;
+    --alert: #d9482b;
+    --text: #1d2b36;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Georgia, "Times New Roman", serif; line-height: 1.7; color: var(--text); background: var(--foam); }
+  h1, h2, h3, nav, th, button { font-family: Arial, Helvetica, sans-serif; }
+  section { max-width: 900px; margin: 0 auto; padding: 50px 20px; }
+  h2 { color: var(--navy); font-size: 1.9rem; border-left: 6px solid var(--alert); padding-left: 12px; }
+
+  /* ===== NAVBAR (sticks to top) ===== */
+  nav { position: sticky; top: 0; background: var(--navy); padding: 12px 20px; display: flex; flex-wrap: wrap; gap: 18px; z-index: 10; }
+  nav a { color: white; text-decoration: none; font-size: 0.95rem; }
+  nav a:hover { color: #ffd27a; }
+
+  /* ===== HERO ===== */
+  header { background: linear-gradient(var(--navy), var(--sea)); color: white; text-align: center; padding: 80px 20px 90px; }
+  header h1 { font-size: 2.8rem; margin: 0 0 10px; }
+  header p { max-width: 650px; margin: 0 auto 12px; font-size: 1.15rem; }
+  .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 14px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 14px; font-family: Arial, sans-serif; }
+
+  /* ===== TEAM CARDS (in the hero) ===== */
+  .team-title { margin: 28px 0 10px; font-size: 1.1rem; }
+  .team { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .member { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); padding: 12px 22px; border-radius: 6px; font-size: 0.95rem; text-align: left; }
+  .member strong { display: block; font-family: Arial, sans-serif; font-size: 1.1rem; margin-bottom: 4px; }
+
+  /* ===== FACT CARDS (Flexbox) ===== */
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+  .card { flex: 1 1 200px; background: white; border-top: 5px solid var(--sea); padding: 18px; border-radius: 4px; }
+  .card strong { display: block; font-size: 1.8rem; color: var(--alert); font-family: Arial, sans-serif; }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; background: white; }
+  th, td { padding: 10px 12px; border: 1px solid #c9d8de; text-align: left; font-size: 0.95rem; }
+  th { background: var(--navy); color: white; }
+  .high   { background: #f8c9c0; font-weight: bold; }
+  .medium { background: #fde9b8; font-weight: bold; }
+  .low    { background: #d3ecd2; font-weight: bold; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { border-left: 4px solid var(--sea); margin-left: 8px; padding-left: 20px; }
+  .timeline div { margin-bottom: 18px; }
+  .timeline b { color: var(--alert); font-family: Arial, sans-serif; }
+
+  /* ===== CHECKLISTS ===== */
+  .lists { display: flex; flex-wrap: wrap; gap: 16px; }
+  .list-box { flex: 1 1 250px; background: var(--sand); padding: 16px 20px; border-radius: 4px; }
+  .list-box h3 { margin-top: 0; color: var(--navy); }
+  .list-box label { display: block; margin-bottom: 6px; }
+
+  /* ===== Q&A (no JavaScript needed) ===== */
+  details { background: white; padding: 12px 16px; margin-bottom: 10px; border-radius: 4px; }
+  summary { cursor: pointer; font-weight: bold; font-family: Arial, sans-serif; color: var(--navy); }
+
+  /* ===== QUIZ ===== */
+  .quiz { background: white; padding: 20px; border-radius: 4px; }
+  .quiz button { background: var(--sea); color: white; border: none; padding: 9px 16px; margin: 4px 6px 4px 0; border-radius: 4px; cursor: pointer; font-size: 0.95rem; }
+  .quiz button:hover { background: var(--navy); }
+  #result { font-weight: bold; margin-top: 10px; }
+
+  /* ===== EMERGENCY BOX ===== */
+  .emergency { background: var(--alert); color: white; padding: 18px 22px; border-radius: 4px; margin-top: 20px; }
+
+  footer { background: var(--navy); color: #cfe0e8; padding: 30px 20px; text-align: center; font-size: 0.9rem; }
+  footer a { color: #ffd27a; }
+  footer ul { list-style: none; padding: 0; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    nav { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#risk">Why India is at risk</a>
+  <a href="#vulnerability">Vulnerability</a>
+  <a href="#case-study">2004 Tsunami</a>
+  <a href="#prepare">Be prepared</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<!-- ===== HOME ===== -->
+<header id="home">
+  <span class="badge">Lovely Professional University | CHE110 Environmental Studies | CA1</span>
+  <h1>Tsunami Ready India</h1>
+  <p>India has over 7,500 km of coastline. This website explains where tsunamis come from, which coasts are most vulnerable, and how you can prepare.</p>
+  <h3 class="team-title">Project team</h3>
+  <div class="team">
+    <div class="member">
+      <strong>Shahil Kumar</strong>
+      Reg. No.: 12615164<br>
+      Roll No.: RK3P26SPB69
+    </div>
+    <div class="member">
+      <strong>Aman Raj</strong>
+      Reg. No.: 12615002<br>
+      Roll No.: RK3P26SPB68
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Key facts</h2>
+  <div class="cards">
+    <div class="card"><strong>26 Dec 2004</strong>The Indian Ocean tsunami, the deadliest on record for India.</div>
+    <div class="card"><strong>~10,000+</strong>Lives lost in India in 2004 (approx. figure, verify before use).</div>
+    <div class="card"><strong>INCOIS</strong>Hyderabad centre that issues India's tsunami warnings.</div>
+    <div class="card"><strong>10-15 min</strong>Typical warning time from the Andaman-Sumatra zone to the Andaman Islands (approx.).</div>
+  </div>
+  <p><em>Note: check every number against INCOIS, NDMA, or MoES before final submission.</em></p>
+</section>
+
+<!-- ===== WHY INDIA IS AT RISK ===== -->
+<section id="risk">
+  <h2>Why India is at risk</h2>
+  <p>A tsunami is a series of very long ocean waves, usually caused by an undersea earthquake that suddenly lifts or drops the sea floor. Underwater landslides and volcanic eruptions can also cause them.</p>
+  <h3>Two main source zones near India</h3>
+  <div class="cards">
+    <div class="card"><h3>Andaman-Sumatra subduction zone</h3>Where the Indian plate slides under the Burma plate. Source of the 2004 tsunami. Threatens the east coast and the Andaman and Nicobar Islands.</div>
+    <div class="card"><h3>Makran subduction zone</h3>In the Arabian Sea, off Pakistan and Iran. The 1945 earthquake here caused a tsunami that hit Gujarat and Maharashtra. Threatens the west coast.</div>
+  </div>
+  <p>Many coastal areas are densely populated and have fishing villages, ports, and tourism, so even a moderate wave can cause large losses.</p>
+</section>
+
+<!-- ===== VULNERABILITY ===== -->
+<section id="vulnerability">
+  <h2>Vulnerability assessment</h2>
+  <p>Risk levels below are a simplified student assessment based on historical events, nearness to source zones, and coastal population. Replace with figures from your research.</p>
+  <div class="table-wrap">
+  <table>
+    <tr><th>State / UT</th><th>Risk level</th><th>Main reason</th></tr>
+    <tr><td>Andaman &amp; Nicobar Islands</td><td class="high">High</td><td>Very close to the Andaman-Sumatra zone; little warning time</td></tr>
+    <tr><td>Tamil Nadu</td><td class="high">High</td><td>Hit hard in 2004; long, dense coastline</td></tr>
+    <tr><td>Andhra Pradesh</td><td class="high">High</td><td>Low-lying delta areas, many fishing villages</td></tr>
+    <tr><td>Puducherry</td><td class="high">High</td><td>Small, densely populated coast, affected in 2004</td></tr>
+    <tr><td>Kerala</td><td class="medium">Medium</td><td>Affected in 2004; dense population near shore</td></tr>
+    <tr><td>Odisha</td><td class="medium">Medium</td><td>Low-lying coast; strong community preparedness work</td></tr>
+    <tr><td>Gujarat</td><td class="medium">Medium</td><td>Exposure to Makran zone; 1945 event</td></tr>
+    <tr><td>Maharashtra</td><td class="low">Low-Medium</td><td>Distant from sources; large coastal cities</td></tr>
+    <tr><td>West Bengal</td><td class="low">Low-Medium</td><td>Shallow bay reduces wave height, but low-lying delta</td></tr>
+  </table>
+  </div>
+  <p><strong>Factors used:</strong> distance from source, coastal elevation, population density, early-warning access, and quality of evacuation routes.</p>
+</section>
+
+<!-- ===== CASE STUDY ===== -->
+<section id="case-study">
+  <h2>Case study: 26 December 2004</h2>
+  <div class="timeline">
+    <div><b>About 6:29 AM IST</b><br>A magnitude 9.1-9.3 earthquake strikes off Sumatra, Indonesia.</div>
+    <div><b>Within minutes</b><br>Waves reach the Andaman and Nicobar Islands.</div>
+    <div><b>Around 2 hours later</b><br>Waves hit the coasts of Tamil Nadu, Andhra Pradesh, Kerala, and Puducherry.</div>
+    <div><b>Aftermath</b><br>Thousands of lives lost, fishing communities destroyed, and widespread damage to homes and boats.</div>
+  </div>
+  <h3>Lessons learned</h3>
+  <ul>
+    <li>India had no tsunami warning system in 2004.</li>
+    <li>After 2004, India set up the Indian Tsunami Early Warning Centre at INCOIS (operational from 2007).</li>
+    <li>Coastal vegetation like mangroves can reduce wave energy.</li>
+    <li>Community awareness and evacuation drills save lives.</li>
+  </ul>
+</section>
+
+<!-- ===== PREPAREDNESS ===== -->
+<section id="prepare">
+  <h2>Preparedness and early warning</h2>
+  <p>INCOIS monitors earthquakes using seismic stations and checks sea level with tide gauges and deep-ocean buoys. Warnings go out by SMS, email, radio, and TV to state authorities and coastal communities.</p>
+
+  <div class="lists">
+    <div class="list-box"><h3>Before</h3>
+      <label><input type="checkbox"> Know your local evacuation route</label>
+      <label><input type="checkbox"> Pack an emergency kit</label>
+      <label><input type="checkbox"> Learn the natural warning signs</label>
+      <label><input type="checkbox"> Join community drills</label>
+    </div>
+    <div class="list-box"><h3>During</h3>
+      <label><input type="checkbox"> Move to high ground immediately</label>
+      <label><input type="checkbox"> Do not wait for an official siren if the ground shakes strongly</label>
+      <label><input type="checkbox"> Stay away from the beach</label>
+    </div>
+    <div class="list-box"><h3>After</h3>
+      <label><input type="checkbox"> Stay away until officials say it is safe</label>
+      <label><input type="checkbox"> Expect more waves</label>
+      <label><input type="checkbox"> Help others and avoid rumours</label>
+    </div>
+  </div>
+
+  <h3 style="margin-top:30px">Common questions</h3>
+  <details><summary>What are the natural warning signs?</summary><p>Strong or long shaking near the coast, a sudden rise or fall of the sea, and a loud roar from the ocean.</p></details>
+  <details><summary>Is a tsunami just one wave?</summary><p>No. It is a series of waves, and later waves can be larger than the first.</p></details>
+  <details><summary>What is the "Tsunami Ready" programme?</summary><p>A UNESCO-IOC community programme. Villages in Odisha were recognised as Tsunami Ready after building warning systems, evacuation plans, and doing drills.</p></details>
+
+  <div class="emergency">
+    <strong>Emergency numbers:</strong> National emergency 112 | NDMA helpline 1078
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section id="quiz">
+  <h2>Test yourself</h2>
+  <div class="quiz">
+    <p id="question"></p>
+    <div id="options"></div>
+    <p id="result"></p>
+    <button id="next" style="display:none">Next question</button>
+  </div>
+</section>
+
+<footer>
+  <p>Made for CHE110 Environmental Studies, Lovely Professional University</p>
+  <p><strong>Sources:</strong></p>
+  <ul>
+    <li><a href="https://incois.gov.in" target="_blank">INCOIS</a></li>
+    <li><a href="https://ndma.gov.in" target="_blank">NDMA</a></li>
+    <li><a href="https://moes.gov.in" target="_blank">Ministry of Earth Sciences</a></li>
+  </ul>
+  <p>Educational project. For real emergencies, follow official instructions.</p>
+</footer>
+
+<script>
+  // Simple quiz: edit the questions below
+  var questions = [
+    { q: "Which centre issues tsunami warnings in India?", options: ["IMD Delhi", "INCOIS Hyderabad", "ISRO Bengaluru"], answer: 1 },
+    { q: "Which year did the deadly Indian Ocean tsunami happen?", options: ["2004", "2010", "1998"], answer: 0 },
+    { q: "What should you do if you feel strong shaking near the coast?", options: ["Go to the beach to watch", "Wait for a TV alert", "Move to high ground"], answer: 2 }
+  ];
+  var current = 0;
+  var score = 0;
+
+  function showQuestion() {
+    var item = questions[current];
+    document.getElementById("question").textContent = (current + 1) + ". " + item.q;
+    document.getElementById("result").textContent = "";
+    document.getElementById("next").style.display = "none";
+    var box = document.getElementById("options");
+    box.innerHTML = "";
+    item.options.forEach(function (text, i) {
+      var b = document.createElement("button");
+      b.textContent = text;
+      b.onclick = function () { check(i); };
+      box.appendChild(b);
+    });
+  }
+
+  function check(i) {
+    var correct = questions[current].answer;
+    if (i === correct) { score++; document.getElementById("result").textContent = "Correct!"; }
+    else { document.getElementById("result").textContent = "Not quite. Correct answer: " + questions[current].options[correct]; }
+    document.getElementById("next").style.display = "inline-block";
+    document.getElementById("next").textContent = current === questions.length - 1 ? "See score" : "Next question";
+  }
+
+  document.getElementById("next").onclick = function () {
+    current++;
+    if (current < questions.length) { showQuestion(); }
+    else {
+      document.getElementById("question").textContent = "Your score: " + score + " / " + questions.length;
+      document.getElementById("options").innerHTML = "";
+      document.getElementById("result").textContent = "";
+      this.style.display = "none";
+    }
+  };
+
+  showQuestion();
+</script>
+</body>
+</html>
